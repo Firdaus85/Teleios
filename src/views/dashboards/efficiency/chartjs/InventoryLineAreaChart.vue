@@ -1,0 +1,56 @@
+<template>
+  <v-card>
+    <v-card-title>
+      <span>Inventory Turnover Graph(%)</span>
+      <v-spacer></v-spacer>
+      <div class="d-flex align-center">
+        <v-icon size="18">
+          {{ mdiCalendarBlankOutline }}
+        </v-icon>
+        <span class="subtitle-2 ms-2">2019-05-01 to 2019-05-10</span>
+      </div>
+    </v-card-title>
+
+    <!-- chart -->
+    <v-card-text>
+      <chartjs-component-line-chart
+        :height="300"
+        :data="AssetData.InventoryChart.data"
+        :options="AssetData.InventoryChart.options"
+        :plugins="plugins"
+      />
+    </v-card-text>
+  </v-card>
+</template>
+
+<script>
+import { mdiCalendarBlankOutline } from '@mdi/js'
+import AssetData from './AssetData'
+import ChartjsComponentLineChart from './charts-components/ChartjsComponentLineChart.vue'
+
+export default {
+  components: {
+    ChartjsComponentLineChart,
+  },
+  setup() {
+    const plugins = [
+      // to add spacing between legends and chart
+      {
+        beforeInit(chart) {
+          /* eslint-disable func-names, no-param-reassign */
+          chart.legend.afterFit = function () {
+            this.height += 25
+          }
+          /* eslint-enable */
+        },
+      },
+    ]
+
+    return {
+      plugins,
+      AssetData,
+      mdiCalendarBlankOutline,
+    }
+  },
+}
+</script>
