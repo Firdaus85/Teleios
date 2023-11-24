@@ -1,6 +1,6 @@
-# (https://teleios-f1fe0.web.app/)
+# https://teleios-f1fe0.web.app/
 
-> Thank you for purchasing our template 🥂
+
 
 ## Installation
 
